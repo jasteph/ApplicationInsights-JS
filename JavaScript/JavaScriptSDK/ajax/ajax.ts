@@ -132,7 +132,8 @@ module Microsoft.ApplicationInsights {
         }
 
         private sendHandler(xhr: XMLHttpRequestInstrumented, content) {
-            xhr.ajaxData.requestSentTime = dateTime.Now();            
+            xhr.ajaxData.requestSentTime = dateTime.Now();                        
+            xhr.setRequestHeader("x-ms-request-root-id", this.appInsights.context.operation.id);
             xhr.ajaxData.xhrMonitoringState.sendDone = true;
         }
 
